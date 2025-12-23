@@ -82,6 +82,9 @@ class MathematicalTreeprocessor < Asciidoctor::Extensions::Treeprocessor
       parent = stem.parent
       stem_image = create_image_block parent, attrs
       stem_image.id = stem.id if stem.id
+      stem.roles.each do |r|
+        stem_image.add_role r
+      end
       if (title = stem.attributes['title'])
         stem_image.title = title
       end
