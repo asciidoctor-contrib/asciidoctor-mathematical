@@ -1,13 +1,14 @@
 # asciidoctor-mathematical
+
 Alternative stem processor for asciidoctor based on
 [Mathematical](https://github.com/gjtorikian/mathematical).
 
 ## Features
 
-asciidoctor-mathematical processes `latexmath` and `stem` blocks and inline
+`asciidoctor-mathematical` processes `latexmath` and `stem` blocks and inline
 macros and replaces them with generated SVG or PNG images, thus enables `stem`
 contents on a much wider range of asciidoctor backends. Currently, it is
-tested to works well with the html, docbook, pdf and latex backends. For
+tested to works well with the HTML, DocBook, PDF and LaTeX backends. For
 `stem` blocks and macros, only the `latexmath` type is supported.
 
 ### Package Specific Attributes
@@ -22,27 +23,69 @@ These attributes can be set to tweak behaviors of this package:
 | mathematical-zoom   | adjust size of the svg formulas in stem blocks                        | any positive number | 1.0           |
 
 ## Usage
-`asciidoctor-pdf -r asciidoctor-mathematical -o test.pdf sample.adoc`
+
+```sh
+asciidoctor-pdf -r asciidoctor-mathematical -o test.pdf sample.adoc
+```
 
 ## Installation
-asciidoctor-mathematical is now available on RubyGems.  Installation is done
-by `gem install asciidoctor-mathematical`. Install dependencies first.
+
+`asciidoctor-mathematical` is now available on RubyGems. For successfull installation install dependencies first.
+
 
 ### Dependencies
-make, gobject, glib, gio, gdk-pixbuf, gdk, cairo, pangocairo, libxml, bison, flex
 
-For the runtime, the following ttf fonts should be installed: cmr10, cmmi10,
-cmex10 and cmsy10. They are provided by the lyx-fonts package in fedora, and the
-fonts-lyx (or previously ttf-lyx) package in debian/ubuntu. In Arch Linux you can
+Required system packages:
+
+* `bison`
+
+* `cairo`
+
+* `flex`
+
+* `gdk-pixbuf`
+
+* `gdk`
+
+* `gio`
+
+* `glib`
+
+* `gobject`
+
+* `libxml`
+
+* `make`
+
+* `pangocairo`
+
+For the runtime, the following TTF fonts should be installed:
+
+* cmr10;
+
+* cmmi10;
+
+* cmex10;
+
+* cmsy10.
+
+They are provided by the `lyx-fonts` package in Fedora, and the
+`fonts-lyx` (or previously `ttf-lyx`) package in Debian/Ubuntu. In Arch Linux you can
 install the [ttf-computer-modern-fonts](https://aur.archlinux.org/packages/ttf-computer-modern-fonts/)
 package from AUR, you also have the [lyx](https://www.archlinux.org/packages/extra/x86_64/lyx/)
 package in _extra_ repo though; both are providing required Computer Modern fonts.
 
 #### OS X
-Make sure you `brew install glib gdk-pixbuf cairo pango cmake`
 
-You can install the font dependencies by using
+Make sure you:
+
+```sh
+brew install glib gdk-pixbuf cairo pango cmake
 ```
+
+You can install the font dependencies by using this command:
+
+```sh
 cd ~/Library/Fonts
 curl -LO http://mirrors.ctan.org/fonts/cm/ps-type1/bakoma/ttf/cmex10.ttf \
      -LO http://mirrors.ctan.org/fonts/cm/ps-type1/bakoma/ttf/cmmi10.ttf \
@@ -53,12 +96,18 @@ curl -LO http://mirrors.ctan.org/fonts/cm/ps-type1/bakoma/ttf/cmex10.ttf \
      -LO http://mirrors.ctan.org/fonts/cm/ps-type1/bakoma/ttf/msam10.ttf \
      -LO http://mirrors.ctan.org/fonts/cm/ps-type1/bakoma/ttf/msbm10.ttf
 ```
+
 If you experience any compilation errors (caused by Mathematical) try running:
-`brew link gettext --force` (you can unlink the libraries later if you want).
+
+```sh
+brew link gettext --force
+```
+
+You can unlink the libraries later if you want.
 
 #### Ubuntu
 
-```
+```sh
 sudo apt -y install \
   bison \
   flex \
@@ -70,12 +119,13 @@ sudo apt -y install \
   fonts-lyx \
   cmake \
   libzstd-dev \
-  libwebp-dev
+  libwebp-dev \
+  ruby-dev
 ```
 
 #### Fedora 40 & 41
 
-```
+```sh
 sudo dnf --setopt=install_weak_deps=False install -y \
   bison \
   cairo-devel \
@@ -96,6 +146,15 @@ sudo dnf --setopt=install_weak_deps=False install -y \
 
 The mathematical gem cannot currently be installed on Fedora 29.
 
+### Gem installation
+
+After installing dependencies run `gem` command:
+
+```sh
+gem install asciidoctor-mathematical
+```
+
+
 ### Trouble Shooting
 
 The `mathematical` gem, which is a hard dependency of
@@ -105,7 +164,6 @@ following command to install `mathematical` (see
 [gjtorikian/mathematical#64](https://github.com/gjtorikian/mathematical/issues/64)
 for the details):
 
-```
+```sh
 MATHEMATICAL_SKIP_STRDUP=1 gem install mathematical
 ```
-
