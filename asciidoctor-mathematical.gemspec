@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files       = ["lib/asciidoctor-mathematical", "lib/asciidoctor-mathematical/extension.rb", "lib/asciidoctor-mathematical.rb"]
   s.homepage    = 'https://github.com/tstumm/asciidoctor-mathematical'
   s.license     = 'MIT'
-  s.add_runtime_dependency 'mathematical', '~> 1.6.0'
+  s.add_runtime_dependency 'mathematical', '~> 1.7.0'
   s.add_runtime_dependency 'asciidoctor', '~> 2.0'
   s.add_runtime_dependency 'asciimath', '~> 2.0'
   s.add_development_dependency 'rake', '~> 12.3.0'
