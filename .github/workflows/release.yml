@@ -5,7 +5,7 @@ on:
     - 'v*'
 jobs:
   activate:
-    if: github.repository == 'asciidoctor/asciidoctor-mathematical'
+    if: github.repository == 'asciidoctor-contrib/asciidoctor-mathematical'
     runs-on: ubuntu-26.04
     steps:
     - run: echo ok go
