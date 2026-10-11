@@ -8,6 +8,7 @@ autoload :Mathematical, 'mathematical'
 class MathematicalTreeprocessor < Asciidoctor::Extensions::Treeprocessor
   LineFeed = %(\n)
   StemInlineMacroRx = /\\?(stem|(?:latex|ascii)math):([a-z,]*)\[(.*?[^\\])\]/m
+  @@counter = 0
 
   def process document
     return unless document.attr? 'stem'
@@ -159,7 +160,10 @@ class MathematicalTreeprocessor < Asciidoctor::Extensions::Treeprocessor
     # TODO: Handle exceptions.
     result = mathematical.parse input
     if inline
-      result[:data]
+      cnt = @@counter
+      @@counter += 1
+      # All ids created by mathematical.parse are the same, so create some uniqueness
+      result[:data].gsub(/(id="|href="#)glyph/, "\\1glyph-#{cnt}")
     else
       unless equ_id
         equ_id = %(stem-#{::Digest::MD5.hexdigest input})
